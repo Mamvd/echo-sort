@@ -1,0 +1,130 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Spotify-inspired design tokens */
+:root {
+  --radius: 0.25rem;
+
+  /* Spotify Light (rarely used but defined) */
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(0 0% 7%);
+  --card: hsl(0 0% 96%);
+  --card-foreground: hsl(0 0% 7%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(0 0% 7%);
+  --primary: hsl(141 73% 42%);
+  --primary-foreground: hsl(0 0% 0%);
+  --secondary: hsl(0 0% 91%);
+  --secondary-foreground: hsl(0 0% 7%);
+  --muted: hsl(0 0% 91%);
+  --muted-foreground: hsl(0 0% 45%);
+  --accent: hsl(0 0% 91%);
+  --accent-foreground: hsl(0 0% 7%);
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(0 0% 85%);
+  --input: hsl(0 0% 85%);
+  --ring: hsl(141 73% 42%);
+
+  /* Spotify surface levels */
+  --sp-base: hsl(0 0% 7%);
+  --sp-surface: hsl(0 0% 9%);
+  --sp-elevated: hsl(0 0% 16%);
+  --sp-highlight: hsl(0 0% 18%);
+  --sp-subdued: hsl(0 0% 70%);
+  --sp-green: hsl(141 73% 42%);
+}
+
+.dark {
+  /* Spotify's actual dark palette */
+  --background: hsl(0 0% 7%);         /* #121212 */
+  --foreground: hsl(0 0% 100%);
+  --card: hsl(0 0% 9%);               /* #181818 */
+  --card-foreground: hsl(0 0% 100%);
+  --popover: hsl(0 0% 16%);           /* #282828 */
+  --popover-foreground: hsl(0 0% 100%);
+  --primary: hsl(141 73% 42%);        /* #1DB954 Spotify Green */
+  --primary-foreground: hsl(0 0% 0%);
+  --secondary: hsl(0 0% 16%);         /* #282828 */
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(0 0% 16%);
+  --muted-foreground: hsl(0 0% 70%);  /* #B3B3B3 */
+  --accent: hsl(0 0% 18%);            /* #2a2a2a hover */
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(0 0% 18%);
+  --input: hsl(0 0% 18%);
+  --ring: hsl(141 73% 42%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Spotify-style scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.5);
+  background-clip: content-box;
+}
+
+/* No transition flash on theme load */
+.no-transition * {
+  transition: none !important;
+}
+
+/* Smooth transitions */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow, opacity, transform;
+  transition-timing-function: cubic-bezier(0.3, 0, 0, 1);
+  transition-duration: 120ms;
+}
